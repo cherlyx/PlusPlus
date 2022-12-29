@@ -1,8 +1,14 @@
 #pragma once
 #include "TreeElement.h"
-
+template <typename T>
 class BinaryTree
-{
+{	
+	struct Node {
+		T data;
+		Node* left;
+		Node* right;
+	};
+	Node* root;
 	vector<int> getVerticesSmallerThan(int value) {
         vector<int> vertices;
         getVerticesSmallerThan(root, value, vertices);
@@ -20,7 +26,7 @@ public:
 	void add(int current_n,int new_n);
 	void remove(int n);
 private:
-	void getVerticesSmallerThan(Node* node, int value, std::vector<int>& vertices) {
+	void getVerticesSmallerThan(Node* node, int value, vector<int>& vertices) {
         if (node == nullptr) {
             return;
         }
