@@ -1,4 +1,4 @@
-﻿#include <iostream> 
+#include <iostream> 
 
 #include <string> 
 
@@ -9,6 +9,7 @@ enum class Orientation { Horisontal, Vertical };
 string Orientation_Name[]{ "Горизонтальный", "Вертикальный" };
 
 class Cursor {
+
 
     size_t x, y;
 
@@ -25,12 +26,8 @@ class Cursor {
         return ofs;
 
     }
-
-
-
 public:
-
-    Cursor() {
+    void read() {
         cout << "Введите координату x: ";
         cin >> x;
         cout << "Введите координату y: ";
@@ -44,39 +41,30 @@ public:
         cout << "Введите статус сна курсора (0 не погашен, 1 погашен): ";
         cin >> sleep;
     }
+    void print() const {
+        cout << x << " " << y << " " << Orientation_Name[size_t(type)] << " " << size << endl;
+    }
 
     size_t getX() {
 
         return x;
 
     }
-
-
-
     size_t getY() {
 
         return y;
 
     }
-
-
-
     Orientation getType() {
 
         return type;
 
     }
-
-
-
     size_t getSize() {
 
         return size;
 
     }
-
-
-
     void setX(size_t x1) {
 
         if (!sleep) x = x1;
@@ -122,25 +110,13 @@ public:
         sleep = 0;
 
     }
-
-
-
-    Cursor(const Cursor& v) :
-
-        x{ v.x }, y{ v.y }, type{ v.type }, size{ v.size }, sleep{ v.sleep } {}
-
-
-
+    Cursor() : x{ 0 }, y{ 0 }, type{ Orientation::Horisontal }, size{ 0 }, sleep{ 0 } {}
     ~Cursor() {}
-
-
-
 };
 
 int main() {
-    int x = 2;
     setlocale(LC_ALL, "RU");
     Cursor cursor;
-    cout << cursor;
-    return 0;
+    cursor.read();
+    cursor.print();
 }
