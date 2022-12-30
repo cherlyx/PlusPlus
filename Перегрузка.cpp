@@ -27,24 +27,6 @@ class Cursor {
 
     }
 public:
-    void read() {
-        cout << "Введите координату x: ";
-        cin >> x;
-        cout << "Введите координату y: ";
-        cin >> y;
-        cout << "Введите тип курсора (0 горизонтальный, 1 вертикальный): ";
-        int orientationInput;
-        cin >> orientationInput;
-        type = (orientationInput == 0) ? Orientation::Horisontal : Orientation::Vertical;
-        cout << "Введите размер курсора: ";
-        cin >> size;
-        cout << "Введите статус сна курсора (0 не погашен, 1 погашен): ";
-        cin >> sleep;
-    }
-    void print() const {
-        cout << x << " " << y << " " << Orientation_Name[size_t(type)] << " " << size << endl;
-    }
-
     size_t getX() {
 
         return x;
@@ -116,7 +98,25 @@ public:
 
 int main() {
     setlocale(LC_ALL, "RU");
+    int x,y,size;
+    Orientation type;
+    cout << "Введите координату x: ";
+    cin >> x;
     Cursor cursor;
-    cursor.read();
-    cursor.print();
+    cursor.getX();
+    cursor.setX(x);
+    cout << "Введите координату y: ";
+    cin >> y;
+    cursor.getY();
+    cursor.setY(y);
+    cout << "Введите вид курсора ( 0 - горизонтальный, 1 вертикальный):";
+    int orientationInput;
+    cin >> orientationInput;
+    cursor.getType();
+    type = (orientationInput == 0) ? Orientation::Horisontal : Orientation::Vertical;
+    cout << "Введите размер курсора: ";
+    cin >> size;
+    cursor.getSize();
+    cursor.setSize(size);
+    cout << x << " " << y << " " << Orientation_Name[size_t(type)] << " " << size << endl;
 }
